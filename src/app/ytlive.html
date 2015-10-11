@@ -1,0 +1,37 @@
+<h1>YouTube live!</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 column">
+            <div class="row"></div>
+            <div class="row"><h4>Stored concerts:</h4></div>
+            <div class="playlist row"></div>
+        </div>
+        <div class="col-md-8 column">
+            <div class="row">
+                <form class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control .input-lg" id="search" placeholder="Name artist">
+                        <span class="input-group-btn">
+                            <button id="searchButton" type="submit" class="btn btn-primary">Find concerts!</button>
+                        </span>
+                    </div>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-info active">
+                            <input type="radio" name="duration" value="SONG" autocomplete="off" checked>Song
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="duration" value="SET" autocomplete="off">Set
+                        </label>
+                        <label class="btn btn-warning">
+                            <input type="radio" name="duration" value="FULLCONCERT" autocomplete="off">Full concert
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div id="concerts" class="row">
+                <i>Search for your favorite bands!</i>
+            </div>
+        </div>
+    </div>
+</div>

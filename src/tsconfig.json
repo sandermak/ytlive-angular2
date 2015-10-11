@@ -1,14 +1,18 @@
 {
-   "compilerOptions": {
-      "removeComments": false,
-      "sourceMap": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "target": "es5",
-      "module": "commonjs",
-      "noImplicitAny": true
-   },
-   "files": [
-      "app/app.ts", "app/ConcertService.ts"
+    "compilerOptions": {
+        "removeComments": false,
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es5",
+        "module": "commonjs",
+        "noImplicitAny": true
+    },
+    "filesGlob": [
+        "app/*.ts"
+    ],
+    "files": [
+        "app/YTLiveBackend.ts",
+        "app/app.ts"
     ]
 }

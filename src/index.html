@@ -1,15 +1,29 @@
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YouTube live!</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <style>
+        .row{
+            margin-top: 15px;
+            margin-bottom: 15px
+        }
+    </style>
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
   </head>
   <body>
-    <my-app>Loading...</my-app>
+    <yt-live>Loading...</yt-live>
     <script>
       System.config({
         packages: {'app': {defaultExtension: 'js'}}
       });
       System.import('app/app');
     </script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

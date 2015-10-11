@@ -1,37 +1,22 @@
 /// <reference path="../typings/tsd.d.ts" />
 
 import {Component, View, bootstrap, NgFor, Query} from 'angular2/angular2';
-import ConcertService from './ConcertService';
+import * as backend from './YTLiveBackend';
 
-class ElemService {
-  names = ["foo", "bar", "baz!"];
-}
-
-// Annotation section
 @Component({
-  selector: 'my-app',
-  viewBindings: [ElemService, ConcertService]
+  selector: 'yt-live',
+  viewBindings: [backend.ConcertService]
 })
 @View({
-  template: `
-    <h1>Hello {{ name }}</h1>
-    <p>elems</p>
-    <ul>
-      <li *ng-for="#name of names"> {{ name }} </li>
-    </ul>
-    `,
+  templateUrl: "app/ytlive.html",
     directives: [NgFor]
 })
-// Component controller
-class MyAppComponent {
-  name: string;
-  names: String[]
+class YTLiveComponent {
+  concerts: backend.ConcertSummary[]
 
-  constructor(elemService: ElemService, concertService: ConcertService) {
-    this.name = 'Alice';
-    this.names = elemService.names;
-    this.names.push(concertService.concert);
+  constructor(concertService: backend.ConcertService) {
+    this.concerts = concertService.findConcerts("some artist");
   }
 }
 
-bootstrap(MyAppComponent);
+bootstrap(YTLiveComponent);
