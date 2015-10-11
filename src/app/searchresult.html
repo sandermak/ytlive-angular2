@@ -8,7 +8,7 @@
         <em class="desc">{{ concert.desc }}</em>
     </div>
     <div class="col-md-2 column">
-        <button title="Add to library" class="store btn btn-danger">
+        <button (click)="addToPlaylist(concert)" title="Add to library" class="store btn btn-danger">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
         <button title="Play now" class="play btn btn-success">

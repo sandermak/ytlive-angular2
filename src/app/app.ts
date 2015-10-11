@@ -6,7 +6,8 @@ import * as plbackend from './PlaylistBackend';
 
 @Component({
   selector: 'search-result',
-  properties: ["concert"]
+  properties: ["concert"],
+  bindings: [plbackend.LocalStoragePlayList]
 })
 @View({
   templateUrl: "app/searchresult.html",
@@ -14,6 +15,13 @@ import * as plbackend from './PlaylistBackend';
 })
 class SearchResultComponent {
   concert: ytbackend.ConcertSummary
+
+  constructor(private playlistService: plbackend.LocalStoragePlayList) {}
+
+  addToPlaylist(concert: ytbackend.ConcertSummary) {
+    console.log('adding', concert);
+    this.playlistService.addConcert(concert);
+  }
 }
 
 @Component({
@@ -42,6 +50,12 @@ class SearchComponent {
 })
 class PLaylistEntryComponent {
   entry: ytbackend.ConcertSummary
+
+  constructor(private playlistService: plbackend.LocalStoragePlayList) {}
+
+  removeEntry(concert: ytbackend.ConcertSummary) {
+    this.playlistService.removeConcert(concert.id);
+  }
 }
 
 @Component({
