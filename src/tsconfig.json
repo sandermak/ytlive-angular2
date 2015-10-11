@@ -14,5 +14,6 @@
     "files": [
         "app/YTLiveBackend.ts",
         "app/app.ts"
-    ]
+    ],
+    "exclude": []
 }

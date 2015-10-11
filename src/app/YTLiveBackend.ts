@@ -30,7 +30,7 @@ export class ConcertService {
   private concerts: ConcertSummary[];
 
   public findConcerts(artist: string, duration = Duration.FULLCONCERT): ConcertSummary[] {
-    return [new ConcertSummary("1", "na", "title here", "desc")]
+    return [new ConcertSummary("1", "http://lorempixel.com/200/200/", "title here", "desc")];
   }
 
   public concertIdToEmbedUrl(id: string): string {
