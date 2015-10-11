@@ -21,7 +21,5 @@
 </div>
 <div id="concerts" class="row">
     <i *ng-if="concerts.length == 0">Search for your favorite bands!</i>
-    <div *ng-for="#concert of concerts">
-      <search-result [concert]="concert"></search-result>
-    </div>
+    <search-result *ng-for="#concert of concerts" [concert]="concert"></search-result>
 </div>
