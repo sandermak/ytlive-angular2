@@ -12,8 +12,9 @@
         "app/*.ts"
     ],
     "files": [
-        "app/YTLiveBackend.ts",
-        "app/app.ts"
+        "app/app.ts",
+        "app/PlaylistBackend.ts",
+        "app/YTLiveBackend.ts"
     ],
     "exclude": []
 }
