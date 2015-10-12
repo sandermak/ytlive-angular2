@@ -1,3 +1,8 @@
+/// <reference path="../typings/tsd.d.ts" />
+
+import { Injectable } from 'angular2/angular2'
+import { Http } from 'angular2/http'
+
 var API_KEY = 'AIzaSyCIA2JXdGQ2hDM_08KpBJgbYJdalGCZqyg';
 var yt_search = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&key=' +
     API_KEY + '&videoCategoryId=10&videoEmbeddable=true&type=video&videoDuration=';
@@ -25,12 +30,36 @@ export class ConcertSummary {
     }
 }
 
+@Injectable()
 export class ConcertService {
 
   private concerts: ConcertSummary[];
 
-  public findConcerts(artist: string, duration = Duration.FULLCONCERT): ConcertSummary[] {
-    return [new ConcertSummary("1", "http://lorempixel.com/200/200/", "title here", "desc")];
+  constructor(private http: Http) { }
+
+  public findConcerts(artist: string, duration = Duration.FULLCONCERT): any {
+    // return [new ConcertSummary("1", "http://lorempixel.com/200/200/", "title here", "desc")];
+    var ytDuration: string;
+    switch(duration) {
+        case Duration.SONG:
+            ytDuration = 'short';
+            break;
+        case Duration.SET:
+            ytDuration = 'medium';
+            break;
+        case Duration.FULLCONCERT:
+            ytDuration = 'long';
+            break;
+    }
+
+    var searchString = yt_search + ytDuration + '&q=' + encodeURIComponent('live ' + artist);
+    
+    return this.http.get(searchString).map((res: any) => {
+      var ytResults: {items: YTSearchResult[] } = res.json();
+      var transformedResults = ytResults.items.map(this.toConcertSummary)
+      this.concerts = transformedResults;
+      return transformedResults;
+    });
   }
 
   public concertIdToEmbedUrl(id: string): string {

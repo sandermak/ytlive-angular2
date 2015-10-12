@@ -1,6 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
 
 import {Component, Directive, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
+import { HTTP_BINDINGS } from 'angular2/http'
 import * as ytbackend from './YTLiveBackend';
 import * as plbackend from './PlaylistBackend';
 
@@ -33,10 +34,17 @@ class SearchResultComponent {
   directives: [NgFor, NgIf, SearchResultComponent]
 })
 class SearchComponent {
-  concerts: ytbackend.ConcertSummary[]
 
-  constructor(concertService: ytbackend.ConcertService) {
-    this.concerts = concertService.findConcerts("some artist");
+  private _concerts: ytbackend.ConcertSummary[] = [];
+
+  constructor(private concertService: ytbackend.ConcertService) {
+    this.concertService
+      .findConcerts("some artist")
+      .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
+  }
+
+  get concerts(): ytbackend.ConcertSummary[] {
+    return this._concerts;
   }
 }
 
@@ -48,7 +56,7 @@ class SearchComponent {
 @View({
   templateUrl: "app/playlistentry.html"
 })
-class PLaylistEntryComponent {
+class PlaylistEntryComponent {
   entry: ytbackend.ConcertSummary
 
   constructor(private playlistService: plbackend.LocalStoragePlayList) {}
@@ -64,7 +72,7 @@ class PLaylistEntryComponent {
 })
 @View({
   templateUrl: "app/playlist.html",
-  directives: [NgFor, PLaylistEntryComponent]
+  directives: [NgFor, PlaylistEntryComponent]
 })
 class PlaylistComponent {
 
@@ -85,4 +93,4 @@ class PlaylistComponent {
 })
 class YTLiveComponent { }
 
-bootstrap(YTLiveComponent);
+bootstrap(YTLiveComponent, [HTTP_BINDINGS]);
