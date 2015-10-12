@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import {Component, Directive, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
+import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES} from 'angular2/angular2';
 import { HTTP_BINDINGS } from 'angular2/http'
 import * as ytbackend from './YTLiveBackend';
 import * as plbackend from './PlaylistBackend';
@@ -31,21 +31,27 @@ class SearchResultComponent {
 })
 @View({
   templateUrl: "app/search.html",
-  directives: [NgFor, NgIf, SearchResultComponent]
+  directives: [NgFor, NgIf, SearchResultComponent, FORM_DIRECTIVES]
 })
 class SearchComponent {
+  searchTerm: string
+  duration: string
 
   private _concerts: ytbackend.ConcertSummary[] = [];
 
-  constructor(private concertService: ytbackend.ConcertService) {
-    this.concertService
-      .findConcerts("some artist")
-      .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
-  }
+  constructor(private concertService: ytbackend.ConcertService) { }
 
   get concerts(): ytbackend.ConcertSummary[] {
     return this._concerts;
   }
+
+  searchConcerts(): void {
+    this.concertService
+      .findConcerts(this.searchTerm)
+      .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
+    console.log('searching', this.searchTerm, this.duration);
+  }
+
 }
 
 @Component({

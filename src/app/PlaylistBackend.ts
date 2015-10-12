@@ -8,7 +8,7 @@ export interface PlaylistService {
 
 export class LocalStoragePlayList implements PlaylistService {
 
-    static PLAYLIST_KEY = 'ytlive-playlist';
+    private static PLAYLIST_KEY = 'ytlive-playlist';
 
     addConcert(concert: ConcertSummary): void {
         var playlist = this.getPlaylistInternal();
@@ -28,7 +28,7 @@ export class LocalStoragePlayList implements PlaylistService {
         return this.getPlaylistInternal();
     }
 
-    getPlaylistInternal(): ConcertSummary[] {
+    private getPlaylistInternal(): ConcertSummary[] {
         var playlistString = localStorage.getItem(LocalStoragePlayList.PLAYLIST_KEY);
         var playlist: ConcertSummary[] =  playlistString ? JSON.parse(playlistString) : [];
 

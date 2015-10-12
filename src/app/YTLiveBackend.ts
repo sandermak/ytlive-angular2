@@ -38,7 +38,6 @@ export class ConcertService {
   constructor(private http: Http) { }
 
   public findConcerts(artist: string, duration = Duration.FULLCONCERT): any {
-    // return [new ConcertSummary("1", "http://lorempixel.com/200/200/", "title here", "desc")];
     var ytDuration: string;
     switch(duration) {
         case Duration.SONG:
@@ -53,7 +52,7 @@ export class ConcertService {
     }
 
     var searchString = yt_search + ytDuration + '&q=' + encodeURIComponent('live ' + artist);
-    
+
     return this.http.get(searchString).map((res: any) => {
       var ytResults: {items: YTSearchResult[] } = res.json();
       var transformedResults = ytResults.items.map(this.toConcertSummary)
