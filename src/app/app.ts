@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import {Component, Directive, View, bootstrap, NgFor, NgIf, EventEmitter} from 'angular2/angular2';
+import {Component, Directive, View, bootstrap, NgFor, NgIf} from 'angular2/angular2';
 import * as ytbackend from './YTLiveBackend';
 import * as plbackend from './PlaylistBackend';
 
@@ -42,22 +42,19 @@ class SearchComponent {
 
 @Component({
   selector: 'playlist-entry',
-  properties: ["entry"],
-  events: ['entryremoved']
+  properties: ["entry"]
+
 })
 @View({
-  templateUrl: "app/playlistentry.html",
-  directives: []
+  templateUrl: "app/playlistentry.html"
 })
 class PLaylistEntryComponent {
-  entryremoved = new EventEmitter();
   entry: ytbackend.ConcertSummary
 
   constructor(private playlistService: plbackend.LocalStoragePlayList) {}
 
   removeEntry(concert: ytbackend.ConcertSummary) {
     this.playlistService.removeConcert(concert.id);
-    this.entryremoved.next(concert);
   }
 }
 
@@ -70,15 +67,11 @@ class PLaylistEntryComponent {
   directives: [NgFor, PLaylistEntryComponent]
 })
 class PlaylistComponent {
-  entries: ytbackend.ConcertSummary[]
 
-  constructor(private playlistService: plbackend.LocalStoragePlayList) {
-    this.entries = playlistService.getPlaylist();
-  }
+  constructor(private playlistService: plbackend.LocalStoragePlayList) { }
 
-  playlistUpdated(event: Event) {
-    console.log(event);
-    this.entries = this.playlistService.getPlaylist();
+  get entries(): ytbackend.ConcertSummary[] {
+    return this.playlistService.getPlaylist();
   }
 
 }
@@ -90,8 +83,6 @@ class PlaylistComponent {
   templateUrl: "app/ytlive.html",
   directives: [SearchComponent, PlaylistComponent]
 })
-class YTLiveComponent {
-
-}
+class YTLiveComponent { }
 
 bootstrap(YTLiveComponent);
