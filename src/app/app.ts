@@ -1,5 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, EventEmitter} from 'angular2/angular2';
 import { HTTP_BINDINGS } from 'angular2/http'
 import * as ytbackend from './YTLiveBackend';

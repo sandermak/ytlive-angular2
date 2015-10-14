@@ -4,8 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "postinstall": "npm run tsd",
-    "tsd": "tsd link --config src/tsd.json && tsd reinstall -ro --config src/tsd.json",
     "start": "live-server --open=src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular2": "2.0.0-alpha.40",
+    "angular2": "2.0.0-alpha.42",
     "systemjs": "0.19.2"
   }
 }
