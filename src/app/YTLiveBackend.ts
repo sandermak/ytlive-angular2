@@ -30,6 +30,28 @@ export class ConcertSummary {
     }
 }
 
+export enum Duration { SONG, SET, FULLCONCERT }
+
+export class VideoPlayer {
+  public isPlaying = false;
+  public currentVideoUrl: string
+
+  public playConcert(id: string) {
+    console.log('service play', id)
+    this.isPlaying = true;
+    this.currentVideoUrl = this.concertIdToEmbedUrl(id);
+  }
+
+  public stop() {
+    this.isPlaying = false;
+    this.currentVideoUrl = undefined;
+  }
+
+  private concertIdToEmbedUrl(id: string): string {
+    return yt_embed + id + '?showinfo=0&autoplay=1';
+  }
+}
+
 @Injectable()
 export class ConcertService {
 
@@ -61,10 +83,6 @@ export class ConcertService {
     });
   }
 
-  public concertIdToEmbedUrl(id: string): string {
-    return yt_embed + id + '?showinfo=0&autoplay=1';
-  }
-
   public getConcert(id: String): ConcertSummary {
       return this.concerts.filter(c => c.id === id)[0];
   }
@@ -75,5 +93,3 @@ export class ConcertService {
           result.snippet.title, desc);
   }
 }
-
-export enum Duration { SONG, SET, FULLCONCERT }

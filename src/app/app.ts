@@ -6,18 +6,17 @@ import * as plbackend from './PlaylistBackend';
 @Component({
   selector: 'search-result',
   properties: ["concert"],
-  bindings: [plbackend.LocalStoragePlayList],
-  events: ['playconcert']
+  bindings: [plbackend.LocalStoragePlayList]
 })
 @View({
   templateUrl: "app/searchresult.html",
   directives: []
 })
 class SearchResultComponent {
-  playconcert = new EventEmitter();
   concert: ytbackend.ConcertSummary
 
-  constructor(private playlistService: plbackend.LocalStoragePlayList) {}
+  constructor(private playlistService: plbackend.LocalStoragePlayList,
+     private videoPlayer: ytbackend.VideoPlayer) {}
 
   addToPlaylist(concert: ytbackend.ConcertSummary) {
     console.log('adding', concert);
@@ -26,7 +25,7 @@ class SearchResultComponent {
 
   playConcert(id: string) {
     console.log('play', id);
-    this.playconcert.next(id);
+    this.videoPlayer.playConcert(id);
   }
 }
 
@@ -41,29 +40,30 @@ class SearchResultComponent {
 class SearchComponent {
   searchTerm: string
   duration: string
-  playing = false;
-  embedUrl: string;
 
   private _concerts: ytbackend.ConcertSummary[] = [];
 
-  constructor(private concertService: ytbackend.ConcertService) { }
+  constructor(private concertService: ytbackend.ConcertService,
+      private videoPlayer: ytbackend.VideoPlayer) { }
 
   get concerts(): ytbackend.ConcertSummary[] {
     return this._concerts;
   }
+  get playing() {
+    console.log('got playing state', this.videoPlayer.isPlaying)
+    return this.videoPlayer.isPlaying;
+  }
+
+  get embedUrl() {
+    return this.videoPlayer.currentVideoUrl;
+  }
 
   searchConcerts(): void {
-    this.playing = false;
+    this.videoPlayer.stop();
     this.concertService
       .findConcerts(this.searchTerm)
       .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
     console.log('searching', this.searchTerm, this.duration);
-  }
-
-  playConcert(id: string) {
-    this.playing = true;
-    this.embedUrl = this.concertService.concertIdToEmbedUrl(id);
-    console.log('searchplay', this.embedUrl);
   }
 
 }
@@ -105,7 +105,8 @@ class PlaylistComponent {
 }
 
 @Component({
-  selector: 'yt-live'
+  selector: 'yt-live',
+  bindings: [ytbackend.VideoPlayer]
 })
 @View({
   templateUrl: "app/ytlive.html",
