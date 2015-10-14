@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES} from 'angular2/angular2';
+import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, EventEmitter} from 'angular2/angular2';
 import { HTTP_BINDINGS } from 'angular2/http'
 import * as ytbackend from './YTLiveBackend';
 import * as plbackend from './PlaylistBackend';
@@ -8,13 +8,15 @@ import * as plbackend from './PlaylistBackend';
 @Component({
   selector: 'search-result',
   properties: ["concert"],
-  bindings: [plbackend.LocalStoragePlayList]
+  bindings: [plbackend.LocalStoragePlayList],
+  events: ['playconcert']
 })
 @View({
   templateUrl: "app/searchresult.html",
   directives: []
 })
 class SearchResultComponent {
+  playconcert = new EventEmitter();
   concert: ytbackend.ConcertSummary
 
   constructor(private playlistService: plbackend.LocalStoragePlayList) {}
@@ -22,6 +24,11 @@ class SearchResultComponent {
   addToPlaylist(concert: ytbackend.ConcertSummary) {
     console.log('adding', concert);
     this.playlistService.addConcert(concert);
+  }
+
+  playConcert(id: string) {
+    console.log('play', id);
+    this.playconcert.next(id);
   }
 }
 
@@ -36,6 +43,8 @@ class SearchResultComponent {
 class SearchComponent {
   searchTerm: string
   duration: string
+  playing = false;
+  embedUrl: string;
 
   private _concerts: ytbackend.ConcertSummary[] = [];
 
@@ -46,10 +55,17 @@ class SearchComponent {
   }
 
   searchConcerts(): void {
+    this.playing = false;
     this.concertService
       .findConcerts(this.searchTerm)
       .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
     console.log('searching', this.searchTerm, this.duration);
+  }
+
+  playConcert(id: string) {
+    this.playing = true;
+    this.embedUrl = this.concertService.concertIdToEmbedUrl(id);
+    console.log('searchplay', this.embedUrl);
   }
 
 }
