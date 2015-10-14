@@ -6,7 +6,7 @@
         <p class="title">{{ entry.title }}</p>
     </div>
     <div class="col-md-4 column">
-        <button title="Play now" class="play btn btn-sm btn-success">
+        <button (click)="playConcert(entry.id)" title="Play now" class="play btn btn-sm btn-success">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
         </button>
         <button (click)="removeEntry(entry)" title="Remove from playlist" class="remove btn btn-sm btn-danger">

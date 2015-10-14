@@ -79,10 +79,15 @@ class SearchComponent {
 class PlaylistEntryComponent {
   entry: ytbackend.ConcertSummary
 
-  constructor(private playlistService: plbackend.LocalStoragePlayList) {}
+  constructor(private playlistService: plbackend.LocalStoragePlayList,
+     private videoPlayer: ytbackend.VideoPlayer) { }
 
   removeEntry(concert: ytbackend.ConcertSummary) {
     this.playlistService.removeConcert(concert.id);
+  }
+
+  playConcert(id: string) {
+    this.videoPlayer.playConcert(id);
   }
 }
 
