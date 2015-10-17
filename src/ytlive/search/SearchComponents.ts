@@ -1,4 +1,4 @@
-import { Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, EventEmitter } from 'angular2/angular2';
+import { Component, View, NgFor, NgIf, FORM_DIRECTIVES } from 'angular2/angular2';
 import { LocalStoragePlayList } from '../playlist/PlaylistBackend';
 import * as ytbackend from './YTLiveBackend';
 

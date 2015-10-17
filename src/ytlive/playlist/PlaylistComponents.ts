@@ -1,6 +1,6 @@
+import { Component, View, NgFor } from 'angular2/angular2';
 import { LocalStoragePlayList } from './PlaylistBackend';
 import { ConcertSummary, VideoPlayer } from '../search/YTLiveBackend';
-import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, EventEmitter} from 'angular2/angular2';
 
 @Component({
   selector: 'playlist-entry',

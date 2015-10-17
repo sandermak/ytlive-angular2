@@ -1,4 +1,4 @@
-import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, EventEmitter} from 'angular2/angular2';
+import { Component, View, bootstrap } from 'angular2/angular2';
 import { HTTP_BINDINGS } from 'angular2/http'
 import { VideoPlayer } from './search/YTLiveBackend';
 import { PlaylistComponent } from './playlist/PlaylistComponents'
