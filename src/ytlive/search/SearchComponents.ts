@@ -8,7 +8,7 @@ import * as ytbackend from './YTLiveBackend';
   bindings: [LocalStoragePlayList]
 })
 @View({
-  templateUrl: "app/search/searchresult.html",
+  templateUrl: "ytlive/search/searchresult.html",
   directives: []
 })
 class SearchResultComponent {
@@ -33,7 +33,7 @@ class SearchResultComponent {
   bindings: [ytbackend.ConcertService]
 })
 @View({
-  templateUrl: "app/search/search.html",
+  templateUrl: "ytlive/search/search.html",
   directives: [NgFor, NgIf, SearchResultComponent, FORM_DIRECTIVES]
 })
 export class SearchComponent {

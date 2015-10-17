@@ -9,7 +9,7 @@ import { SearchComponent } from './search/SearchComponents';
   bindings: [VideoPlayer]
 })
 @View({
-  templateUrl: "app/ytlive.html",
+  templateUrl: "ytlive/ytlive.html",
   directives: [SearchComponent, PlaylistComponent]
 })
 class YTLiveComponent { }

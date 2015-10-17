@@ -1,4 +1,4 @@
-import { ConcertSummary } from '../YTLiveBackend';
+import { ConcertSummary } from '../search/YTLiveBackend';
 
 export interface PlaylistService {
     getPlaylist(): ConcertSummary[];

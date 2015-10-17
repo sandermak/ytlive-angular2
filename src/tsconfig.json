@@ -9,14 +9,14 @@
         "noImplicitAny": true
     },
     "filesGlob": [
-        "app/**/*.ts"
+        "ytlive/**/*.ts"
     ],
     "files": [
-        "app/app.ts",
-        "app/playlist/PlaylistBackend.ts",
-        "app/playlist/PlaylistComponents.ts",
-        "app/search/SearchComponents.ts",
-        "app/search/YTLiveBackend.ts"
+        "ytlive/playlist/PlaylistBackend.ts",
+        "ytlive/playlist/PlaylistComponents.ts",
+        "ytlive/search/SearchComponents.ts",
+        "ytlive/search/YTLiveBackend.ts",
+        "ytlive/ytlive.ts"
     ],
     "exclude": []
 }

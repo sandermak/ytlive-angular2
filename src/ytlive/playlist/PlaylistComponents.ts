@@ -8,7 +8,7 @@ import {Component, Directive, View, bootstrap, NgFor, NgIf, FORM_DIRECTIVES, Eve
 
 })
 @View({
-  templateUrl: "app/playlist/playlistentry.html"
+  templateUrl: "ytlive/playlist/playlistentry.html"
 })
 class PlaylistEntryComponent {
   entry: ConcertSummary
@@ -30,7 +30,7 @@ class PlaylistEntryComponent {
   bindings: [LocalStoragePlayList]
 })
 @View({
-  templateUrl: "app/playlist/playlist.html",
+  templateUrl: "ytlive/playlist/playlist.html",
   directives: [NgFor, PlaylistEntryComponent]
 })
 export class PlaylistComponent {
