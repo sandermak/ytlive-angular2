@@ -15,7 +15,8 @@
         "app/app.ts",
         "app/playlist/PlaylistBackend.ts",
         "app/playlist/PlaylistComponents.ts",
-        "app/YTLiveBackend.ts"
+        "app/search/SearchComponents.ts",
+        "app/search/YTLiveBackend.ts"
     ],
     "exclude": []
 }
