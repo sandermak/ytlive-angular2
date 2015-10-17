@@ -4,6 +4,7 @@
   "description": "",
   "main": "ytlive.js",
   "scripts": {
+    "prestart": "tsc -p src",
     "start": "live-server --open=src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
