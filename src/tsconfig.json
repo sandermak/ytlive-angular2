@@ -9,11 +9,12 @@
         "noImplicitAny": true
     },
     "filesGlob": [
-        "app/*.ts"
+        "app/**/*.ts"
     ],
     "files": [
         "app/app.ts",
-        "app/PlaylistBackend.ts",
+        "app/playlist/PlaylistBackend.ts",
+        "app/playlist/PlaylistComponents.ts",
         "app/YTLiveBackend.ts"
     ],
     "exclude": []
