@@ -18,12 +18,10 @@ class SearchResultComponent {
      private videoPlayer: ytbackend.VideoPlayer) {}
 
   addToPlaylist(concert: ytbackend.ConcertSummary) {
-    console.log('adding', concert);
     this.playlistService.addConcert(concert);
   }
 
   playConcert(id: string) {
-    console.log('play', id);
     this.videoPlayer.playConcert(id);
   }
 }
@@ -49,7 +47,6 @@ export class SearchComponent {
     return this._concerts;
   }
   get playing() {
-    console.log('got playing state', this.videoPlayer.isPlaying)
     return this.videoPlayer.isPlaying;
   }
 
@@ -62,7 +59,6 @@ export class SearchComponent {
     this.concertService
       .findConcerts(this.searchTerm)
       .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
-    console.log('searching', this.searchTerm, this.duration);
   }
 
 }
