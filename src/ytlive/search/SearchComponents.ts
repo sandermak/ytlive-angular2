@@ -38,14 +38,11 @@ export class SearchComponent {
   searchTerm: string
   duration: string
 
-  private _concerts: ytbackend.ConcertSummary[] = [];
+  concerts: ytbackend.ConcertSummary[] = [];
 
   constructor(private concertService: ytbackend.ConcertService,
       private videoPlayer: ytbackend.VideoPlayer) { }
 
-  get concerts(): ytbackend.ConcertSummary[] {
-    return this._concerts;
-  }
   get playing() {
     return this.videoPlayer.isPlaying;
   }
@@ -58,7 +55,7 @@ export class SearchComponent {
     this.videoPlayer.stop();
     this.concertService
       .findConcerts(this.searchTerm)
-      .subscribe((results: ytbackend.ConcertSummary[]) => this._concerts = results);
+      .subscribe((results: ytbackend.ConcertSummary[]) => this.concerts = results);
   }
 
 }
