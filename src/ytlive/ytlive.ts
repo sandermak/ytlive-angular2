@@ -1,12 +1,12 @@
 import { Component, View, bootstrap } from 'angular2/angular2';
-import { HTTP_BINDINGS } from 'angular2/http'
+import { HTTP_PROVIDERS } from 'angular2/http'
 import { VideoPlayer } from './search/YTLiveBackend';
 import { PlaylistComponent } from './playlist/PlaylistComponents'
 import { SearchComponent } from './search/SearchComponents';
 
 @Component({
   selector: 'yt-live',
-  bindings: [VideoPlayer]
+  providers: [VideoPlayer]
 })
 @View({
   templateUrl: "ytlive/ytlive.html",
@@ -14,4 +14,4 @@ import { SearchComponent } from './search/SearchComponents';
 })
 class YTLiveComponent { }
 
-bootstrap(YTLiveComponent, [HTTP_BINDINGS]);
+bootstrap(YTLiveComponent, [HTTP_PROVIDERS]);

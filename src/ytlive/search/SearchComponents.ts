@@ -5,7 +5,7 @@ import * as ytbackend from './YTLiveBackend';
 @Component({
   selector: 'search-result',
   properties: ["concert"],
-  bindings: [LocalStoragePlayList]
+  providers: [LocalStoragePlayList]
 })
 @View({
   templateUrl: "ytlive/search/searchresult.html",
@@ -28,7 +28,7 @@ class SearchResultComponent {
 
 @Component({
   selector: 'search',
-  bindings: [ytbackend.ConcertService]
+  providers: [ytbackend.ConcertService]
 })
 @View({
   templateUrl: "ytlive/search/search.html",
