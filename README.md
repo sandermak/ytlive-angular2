@@ -1,6 +1,6 @@
 ### YouTube live!
 
-An example application that shows Angular2 with TypeScript in action.
+An example application that shows Angular2 with TypeScript in action. For more information, read Exploring Angular2: http://branchandbound.net/blog/web/2015/11/exploring-angular2/
 
 Install and run with ```npm install && npm start```
 
