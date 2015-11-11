@@ -27,7 +27,7 @@ class PlaylistEntryComponent {
 
 @Component({
   selector: 'playlist',
-  bindings: [LocalStoragePlayList]
+  providers: [LocalStoragePlayList]
 })
 @View({
   templateUrl: "ytlive/playlist/playlist.html",
